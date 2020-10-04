@@ -1,11 +1,11 @@
 #vpc_id = ""
-private_key = TF_VAR_private_key
-ssh_user = TF_VAR_ssh_user
+#private_key = TF_VAR_private_key
+#ssh_user = TF_VAR_ssh_user
 
-access_key = TF_VAR_access_key
-secret_key = TF_VAR_secret_key
+#access_key = TF_VAR_access_key
+#secret_key = TF_VAR_secret_key
 
-token = TF_VAR_token
+#token = TF_VAR_token
   
 region = "us-east-1"
 az = "us-east-1a"
