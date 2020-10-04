@@ -5,15 +5,17 @@ pipeline {
     
         stage('Terraform init') {
             steps {
-              withCredentials([string(credentialsId: 'Git_token', variable: 'TF_VAR_token'), AmazonWebServicesCredentialsBinding(credentialsId: 'AWS_keys', accessKeyVariable: 'TF_VAR_access_key', secretKeyVariable: 'TF_VAR_secret_key')]) {
-                sh 'echo Hello'
-                sh 'sudo terraform init'
-                
+              withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_keys', ACCESS_KEY: 'TF_VAR_access_key', SECRET_KEY: 'TF_VAR_secret_key']]){
+                withCredentials([string(credentialsId: 'Git_token', variable: 'TF_VAR_token')]) {
+                  sh 'echo Hello'
+                  sh 'sudo terraform init'
+                } 
               }
             }
         }
         
-        
+        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'my-aws-credentials',
+                        ACCESS_KEY: 'ACCESS_KEY', SECRET_KEY: 'SECRET_KEY']]) { }
 
               //withCredentials([sshUserPrivateKey(credentialsId: 'SSH_ubuntu', keyFileVariable: 'keyfile', usernameVariable: 'userName')]) {
                 
