@@ -1,0 +1,8 @@
+#vpc_id = ""
+private_key_path = "/home/mariia/.ssh/EC2_keys.pem"
+region = "us-east-1"
+az = "us-east-1a"
+az2 = "us-east-1b"
+ami = "ami-0817d428a6fb68645"
+instance_type = "t2.micro"
+keys = "EC2_keys"
