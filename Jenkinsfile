@@ -7,8 +7,10 @@ pipeline {
             steps {
               withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_keys', accessKeyVariable: 'TF_VAR_access_key', secretKeyVariable: 'TF_VAR_secret_key']]){
                 withCredentials([string(credentialsId: 'GitToken', variable: 'TF_VAR_token')]) {
-                  sh 'echo Hello'
-                  sh 'sudo terraform init'
+                  sh '[ -d "./jenkins_terraform_final" ] &&   sudo rm -r ./jenkins_terraform_final || echo "directory does not exist yet" '
+                  sh 'git clone https://github.com/MariiaMarkina/terraform_final ./jenkins_terraform_final'
+                  sh 'cd ./jenkins/terraform/final'
+                  sh 'terraform init'
                 } 
               }
             }
