@@ -9,7 +9,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'GitToken', variable: 'TF_VAR_token')]) {
                   sh '[ -d "./jenkins_terraform_final" ] &&   sudo rm -r ./jenkins_terraform_final || echo "directory does not exist yet" '
                   sh 'git clone https://github.com/MariiaMarkina/terraform_final ./jenkins_terraform_final'
-                  sh 'cd ./jenkins/terraform/final'
+                  sh 'cd ./jenkins_terraform_final'
                   sh 'terraform init'
                 } 
               }
