@@ -16,8 +16,18 @@ pipeline {
             }
         }
         
+        stage('Terraform plan & apply') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'SSH_ubuntu', keyFileVariable: 'TF_VAR_private_key', usernameVariable: 'TF_VAR_ssh_user')]) {
+                  sh 'cd ./jenkins_terraform_final'
+                  sh 'ls -l'
+                  sh 'terraform plan'
+                } 
+              
+            }
+        }
+        
 
-              //withCredentials([sshUserPrivateKey(credentialsId: 'SSH_ubuntu', keyFileVariable: 'keyfile', usernameVariable: 'userName')]) {
                 
         
         
