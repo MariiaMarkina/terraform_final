@@ -38,8 +38,8 @@ resource "aws_instance" "myjenkins" {
 
   connection {
     type = "ssh"
-    user        = "${var.ssh_user}"
-    private_key = "${var.private_key}"
+    user        = var.ssh_user
+    private_key = var.private_key
     host = self.public_ip
   } 
 
@@ -70,8 +70,8 @@ resource "aws_instance" "nginx_dev" {
 
   connection {
     type = "ssh"
-    user        = "${var.ssh_user}"
-    private_key = "${var.private_key}"
+    user        = var.ssh_user
+    private_key = var.private_key
     host = self.public_ip
   }
 
@@ -95,8 +95,8 @@ resource "aws_instance" "nginx_prod" {
 
   connection {
     type = "ssh"
-    user        = "${var.ssh_user}"
-    private_key = "${var.private_key}"
+    user        = var.ssh_user
+    private_key = var.private_key
     host = self.public_ip
   }
 
