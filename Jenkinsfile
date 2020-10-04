@@ -26,7 +26,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'GitToken', variable: 'TF_VAR_token')]) {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ssh_key_for_instance', keyFileVariable: 'TF_VAR_private_key', usernameVariable: 'TF_VAR_ssh_user')]) {
                       //sh 'cd ./jenkins_terraform_final'
-                      sh 'terraform destroy --auto-apply'
+                      sh 'terraform destroy --auto-approve'
                      // sh 'terraform apply my_plan'
                     }
                 } 
