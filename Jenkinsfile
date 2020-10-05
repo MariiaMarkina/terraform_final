@@ -27,7 +27,7 @@ pipeline {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ssh_key_for_instance', keyFileVariable: 'VAR_private_key', usernameVariable: 'TF_VAR_ssh_user')]) {
                       //sh 'cd ./jenkins_terraform_final'
                       sh '[ -f "./ec2_key.txt" ] &&   echo "file for keys already exists" || touch "./ec2_key.txt"'
-                      sh 'echo "$VAR_private_key" > ./ec2_key.txt'
+                      sh 'echo $VAR_private_key > ./ec2_key.txt'
                       //sh 'terraform destroy --auto-approve'
                       sh 'terraform apply my_plan'
                       sh 'rm ./ec2_key.txt'
