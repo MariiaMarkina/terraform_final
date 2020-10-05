@@ -13,6 +13,7 @@ pipeline {
                       //sh 'cd ./jenkins_terraform_final'
                       sh 'terraform init'
                       sh 'ls -l'
+                      sh '[ -f "./ec2_key.txt" ] &&   echo "file for keys already exists" || touch "./ec2_key.pem"'
                       sh 'cp "$Var_private_key" ./ec2_key.pem'
                       sh 'terraform plan -out my_plan'
                     }
@@ -27,7 +28,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'GitToken', variable: 'TF_VAR_token')]) {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ssh_key_for_instance', keyFileVariable: 'VAR_private_key', usernameVariable: 'TF_VAR_ssh_user')]) {
                       //sh 'cd ./jenkins_terraform_final'
-                      //sh '[ -f "./ec2_key.txt" ] &&   echo "file for keys already exists" || touch "./ec2_key.pem"'
+                      
                       
                       //sh 'echo $VAR_private_key > ./ec2_key.pem'
                       //sh 'terraform destroy --auto-approve'
