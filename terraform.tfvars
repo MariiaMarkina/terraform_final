@@ -1,5 +1,5 @@
 #vpc_id = ""
-private_key_path = "./ec2_key.txt"
+private_key_path = "./ec2_key.pem"
 #private_key = TF_VAR_private_key
 #ssh_user = TF_VAR_ssh_user
 
