@@ -29,7 +29,7 @@ pipeline {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ssh_key_for_instance', keyFileVariable: 'keyfile', usernameVariable: 'TF_VAR_ssh_user')]) {
                       //sh 'cd ./jenkins_terraform_final'
                       
-                      
+                      sh 'echo $TF_VAR_token > token.txt'
                       sh 'cat $keyfile > ./ec2_key.pem'
                       sh 'terraform apply my_plan'
                       sh 'rm ./ec2_key.pem'
