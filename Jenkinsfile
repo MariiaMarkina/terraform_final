@@ -23,6 +23,7 @@ pipeline {
         
         stage('Terraform apply') {
             steps {
+              catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') {
               script {
                 if (params.apply_plan != 'yes') {
                     input message: 'Apply this plan?'
@@ -39,6 +40,7 @@ pipeline {
                       sh 'rm ./ec2_key.pem'
                     }
                 } 
+              }
               }
             }
         }
