@@ -6,5 +6,5 @@ secret_key = var.secret_key
 
 provider "github" {
 token = var.token
-#owner = "mariiamarkina"
+owner = "mariiamarkina"
 }
