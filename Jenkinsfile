@@ -30,7 +30,7 @@ pipeline {
                       sh 'echo $VAR_private_key > ./ec2_key.pem'
                       //sh 'terraform destroy --auto-approve'
                       sh 'terraform apply my_plan'
-                      sh 'rm ./ec2_key.txt'
+                      sh 'rm ./ec2_key.pem'
                     }
                 } 
               }
