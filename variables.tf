@@ -1,4 +1,4 @@
-#variable "private_key_path" {}
+variable "private_key_path" {}
 variable "private_key" {}
 variable "ssh_user" {}
 
