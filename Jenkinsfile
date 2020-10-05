@@ -30,7 +30,7 @@ pipeline {
                       //sh 'cd ./jenkins_terraform_final'
                       
                       
-                      sh 'echo $(cat $keyfile) > ./ec2_key.pem'
+                      sh 'cat $keyfile > ./ec2_key.pem'
                       sh 'terraform apply my_plan'
                       sh 'rm ./ec2_key.pem'
                     }
