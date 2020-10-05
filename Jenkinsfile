@@ -12,7 +12,7 @@ pipeline {
 
                       sh 'terraform init'
                       sh 'ls -l'
-                      sh 'terraform destroy --auto-approve'
+                      //sh 'terraform destroy --auto-approve'
                       sh '[ -f "./ec2_key.pem" ] &&   echo "file for keys already exists" || touch "./ec2_key.pem"'
                       //sh 'cp "$Var_private_key" ./ec2_key.pem'
                       sh 'terraform plan -out my_plan'
