@@ -23,12 +23,12 @@ pipeline {
         }
         
         stage('Terraform apply') {
-            script {
-              if (params.apply_plan != 'yes') {
-                  input message: 'Apply this plan?'
-              }
-            }
             steps {
+              script {
+                if (params.apply_plan != 'yes') {
+                    input message: 'Apply this plan?'
+                }
+              }
               withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_keys', accessKeyVariable: 'TF_VAR_access_key', secretKeyVariable: 'TF_VAR_secret_key']]){
                 withCredentials([string(credentialsId: 'GitToken', variable: 'TF_VAR_token')]) {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ssh_key_for_instance', keyFileVariable: 'keyfile', usernameVariable: 'TF_VAR_ssh_user')]) {
