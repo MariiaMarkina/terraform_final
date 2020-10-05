@@ -23,6 +23,11 @@ pipeline {
         }
         
         stage('Terraform apply') {
+            script {
+              if (params.apply_plan != 'yes') {
+                  input message: 'Apply this plan?'
+              }
+            }
             steps {
               withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_keys', accessKeyVariable: 'TF_VAR_access_key', secretKeyVariable: 'TF_VAR_secret_key']]){
                 withCredentials([string(credentialsId: 'GitToken', variable: 'TF_VAR_token')]) {
@@ -31,6 +36,7 @@ pipeline {
                       
                       sh 'echo $TF_VAR_token > token.txt'
                       sh 'cat $keyfile > ./ec2_key.pem'
+                      
                       sh 'terraform apply my_plan'
                       sh 'rm ./ec2_key.pem'
                     }
@@ -43,7 +49,7 @@ pipeline {
                 
         
         
-   
+ // input message: 'Do you want to approve the deploy in production?', ok: 'Yes'
         
 
         
