@@ -5,7 +5,7 @@ resource "aws_instance" "application_dev" {
   instance_type = var.instance_type
   subnet_id = "${aws_subnet.publicnet_app_dev.id}"
   key_name = var.keys
-  security_groups = [ "${aws_security_group.terraformhomework.id}" ]
+  security_groups = [ "${aws_security_group.applicationgr.id}" ]
   user_data = file("ubuntu.sh")
 
   tags = {
@@ -19,7 +19,7 @@ resource "aws_instance" "application_prod" {
   instance_type = var.instance_type
   subnet_id = "${aws_subnet.publicnet_app_prod.id}"
   key_name = var.keys
-  security_groups = [ "${aws_security_group.terraformhomework.id}" ]
+  security_groups = [ "${aws_security_group.applicationgr.id}" ]
   user_data = file("ubuntu.sh")
 
   tags = {
@@ -33,7 +33,7 @@ resource "aws_instance" "myjenkins" {
   instance_type = var.instance_type
   subnet_id = "${aws_subnet.publicnet_jenkins.id}"
   key_name = var.keys
-  security_groups = [ "${aws_security_group.terraformhomework.id}" ]
+  security_groups = [ "${aws_security_group.jenkinsgr.id}" ]
   user_data = file("jenkins.sh")
 
   connection {
@@ -65,7 +65,7 @@ resource "aws_instance" "nginx_dev" {
   instance_type = var.instance_type
   subnet_id = "${aws_subnet.publicnet_nginx_dev.id}"
   key_name = var.keys
-  security_groups = [ "${aws_security_group.terraformhomework.id}" ]
+  security_groups = [ "${aws_security_group.nginxgr.id}" ]
   user_data = file("nginx.sh")
 
   connection {
@@ -90,7 +90,7 @@ resource "aws_instance" "nginx_prod" {
   instance_type = var.instance_type
   subnet_id = "${aws_subnet.publicnet_nginx_prod.id}"
   key_name = var.keys
-  security_groups = [ "${aws_security_group.terraformhomework.id}" ]
+  security_groups = [ "${aws_security_group.nginxgr.id}" ]
   user_data = file("nginx.sh")
 
   connection {
