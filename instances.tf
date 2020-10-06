@@ -45,12 +45,12 @@ resource "aws_instance" "myjenkins" {
 
    provisioner "file" {
   #  source = local_file.application_dev_ip.filename
-    content      = "${aws_instance.application_dev.public_ip}"
+    content      = "${aws_instance.application_dev.private_ip}"
     destination = "/home/ubuntu/app_dev_ip.txt"
   }
    provisioner "file" {
 #   source = local_file.application_prod_ip.filename
-   content      = "${aws_instance.application_prod.public_ip}"
+   content      = "${aws_instance.application_prod.private_ip}"
     destination = "/home/ubuntu/app_prod_ip.txt"
   }
 
